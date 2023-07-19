@@ -1,0 +1,30 @@
+import { RcsbAbstractDisplay } from "./RcsbAbstractDisplay";
+import { Selection, BaseType } from "d3-selection";
+import { LocationViewInterface } from "../RcsbBoard";
+import { RcsbFvTrackDataElementInterface } from "../../RcsbDataManager/RcsbDataManager";
+export declare class RcsbFastSequenceDisplay extends RcsbAbstractDisplay {
+    private yScale;
+    private intervalRatio;
+    private hideFlag;
+    private compKey;
+    private nonEmptyDisplay;
+    private readonly rcsbD3SequenceManager;
+    private definedScale;
+    private innerData;
+    private hoverCallback;
+    mouseoutCallBack: () => void;
+    private clickCallBack;
+    setDynamicDisplay(): void;
+    setNonEmptyDisplay(flag: boolean): void;
+    enter(e: Selection<SVGGElement, RcsbFvTrackDataElementInterface, BaseType, undefined>): void;
+    _update(where: LocationViewInterface, compKey?: string): void;
+    displayEmpty(): void;
+    plot(elements: Selection<SVGGElement, RcsbFvTrackDataElementInterface, BaseType, undefined>): void;
+    move(): void;
+    private setScale;
+    private plotSequenceLine;
+    private rmSequenceLine;
+    private checkHideFlag;
+    private minIntervalRatio;
+    private getSequenceData;
+}

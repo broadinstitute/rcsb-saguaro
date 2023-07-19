@@ -1,0 +1,45 @@
+import { RcsbDisplayInterface } from "./RcsbDisplayInterface";
+import { LocationViewInterface } from "../RcsbBoard";
+import { RcsbD3Manager } from "../RcsbD3/RcsbD3Manager";
+import { RcsbFvColorGradient, RcsbFvTrackData, RcsbFvTrackDataElementInterface, RcsbFvTrackDataMap } from "../../RcsbDataManager/RcsbDataManager";
+import { RcsbFvContextManager } from "../../RcsbFv/RcsbFvContextManager/RcsbFvContextManager";
+import { BaseType, Selection } from "d3-selection";
+import { RcsbScaleInterface } from "../RcsbD3/RcsbD3ScaleFactory";
+export declare class RcsbCompositeDisplay implements RcsbDisplayInterface {
+    private innerDisplays;
+    private _height;
+    private _data;
+    private _bgColor;
+    private compositeHeight;
+    setElementClickCallBack: (f: (d?: RcsbFvTrackDataElementInterface, e?: MouseEvent) => void) => void;
+    setElementEnterCallBack: (f: (d?: RcsbFvTrackDataElementInterface, e?: MouseEvent) => void) => void;
+    setElementLeaveCallBack: (f: (d?: RcsbFvTrackDataElementInterface, e?: MouseEvent) => void) => void;
+    setUpdateDataOnMove: (f: (d: LocationViewInterface) => Promise<RcsbFvTrackData>) => void;
+    setTooltip: (flag: boolean) => void;
+    setMinRatio: (ratio: number) => void;
+    setSelectDataInRange: (flag: boolean) => void;
+    setHideEmptyTrack: (flag: boolean) => void;
+    setCompositeHeight(h: number): void;
+    mouseoutCallBack(): void;
+    mouseoverCallBack(): void;
+    mousemoveCallBack(event: MouseEvent, n: number): void;
+    reset(): void;
+    init(width: number, scale: RcsbScaleInterface): void;
+    update(): void;
+    displayEmpty(): void;
+    move(): void;
+    moveSelection(mode: 'select' | 'hover'): void;
+    addDisplay(displayId: string, display: RcsbDisplayInterface): void;
+    setManagers(d3Manager: RcsbD3Manager, contextManager: RcsbFvContextManager): void;
+    setBoardHighlight(f: (d: RcsbFvTrackDataElementInterface, operation: 'set' | 'add', mode: 'select' | 'hover', propFlag?: boolean) => void): void;
+    setHighlightHoverElement(f: (d?: RcsbFvTrackDataElementInterface) => void, g: (d?: RcsbFvTrackDataElementInterface) => void): void;
+    height(h?: number): number;
+    trackColor(c?: string): string;
+    data(d?: RcsbFvTrackDataMap | RcsbFvTrackData): RcsbFvTrackDataMap;
+    highlightRegion(d: Array<RcsbFvTrackDataElementInterface>, options?: {
+        color?: string;
+        rectClass?: string;
+    }): void;
+    setDisplayColor(color: string | RcsbFvColorGradient): void;
+    plot: (element: Selection<SVGGElement, RcsbFvTrackDataElementInterface, BaseType, undefined>) => void;
+}
