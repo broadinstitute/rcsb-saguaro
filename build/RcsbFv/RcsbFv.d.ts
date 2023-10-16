@@ -69,8 +69,9 @@ export declare class RcsbFv {
     /**Replaces annotations a particular board track
      * @param trackId Id that identifies the track
      * @param trackData New annotations to be displayed
+     * @param displayId optional Id that identifies track from a composite track to update
      * */
-    updateTrackData(trackId: string, trackData: RcsbFvTrackData): Promise<void>;
+    updateTrackData(trackId: string, trackData: RcsbFvTrackData, displayId?: string): Promise<void>;
     /**Method used to update board global and all-tracks configuration
      * @param newConfig New board configuration data
      * */
